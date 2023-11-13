@@ -1,0 +1,35 @@
+name: example
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.1.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  tembo_nida_sdk:
+    path: "/Users/mac/Programs/Packages/tembo_nida_sdk"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: TT-Hoves
+      fonts:
+        - asset: packages/tembo_ui/fonts/TTHoves_Light.ttf
+          weight: 300
+        - asset: packages/tembo_ui/fonts/TTHoves_Regular.ttf
+          weight: 400
+        - asset: packages/tembo_ui/fonts/TTHoves_Medium.ttf
+          weight: 500
+        - asset: packages/tembo_ui/fonts/TTHoves_Bold.ttf
+          weight: 600
+        - asset: packages/tembo_ui/fonts/TTHoves_Black.ttf
+          weight: 700

@@ -1,7 +1,7 @@
 name: tembo_nida_sdk
 description: TemboPlus NIDA Authorization Implementation
 version: 0.0.1
-homepage:
+homepage: https://github.com/okellogerald/tembo_nida_sdk
 
 environment:
   sdk: '>=3.1.4 <4.0.0'
@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  tembo_ui:
+    path: "/Users/mac/Programs/Packages/tembo_ui"
 
 dev_dependencies:
   flutter_test:
@@ -22,3 +24,4 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
