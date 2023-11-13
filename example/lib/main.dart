@@ -16,9 +16,7 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const HomePage(),
-    );
+    return const MaterialApp(home: HomePage());
   }
 }
 
@@ -32,7 +30,7 @@ class HomePage extends StatelessWidget {
         body: Center(
           child: TextButton(
             onPressed: () {
-             startVerificationProcess(context);
+              startVerificationProcess(context);
             },
             child: const Text("Start NIDA Verification"),
           ),
