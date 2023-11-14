@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:tembo_ui/components/source.dart';
+import 'package:tembo_ui/source.dart';
 
-class QuestionsPage extends StatefulWidget {
+class QuestionsPage extends TemboPage {
   const QuestionsPage({super.key});
 
-  static const name = "questions-view";
+  @override
+  String get name => "questions-page";
 
   @override
   State<QuestionsPage> createState() => _QuestionsPageState();

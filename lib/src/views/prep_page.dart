@@ -2,11 +2,17 @@ import 'package:tembo_nida_sdk/src/views/nin_number_page.dart';
 import 'package:tembo_nida_sdk/tembo_nida_sdk.dart';
 import 'package:tembo_ui/source.dart';
 
-class PrepPage extends StatelessWidget {
+class PrepPage extends TemboPage {
   const PrepPage({super.key});
 
-  static const name = "prep-name";
+  @override
+  String get name => "prep-page";
 
+  @override
+  State<PrepPage> createState() => _PrepPageState();
+}
+
+class _PrepPageState extends State<PrepPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +49,7 @@ class PrepPage extends StatelessWidget {
   }
 
   onPressed() {
-    rootNavigator.pushPage(NIDANumberPage.name, const NIDANumberPage());
+    rootNavigator.to(const NIDANumberPage());
   }
 }
 

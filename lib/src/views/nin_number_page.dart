@@ -2,10 +2,11 @@ import 'package:tembo_nida_sdk/src/views/questions_page.dart';
 import 'package:tembo_nida_sdk/tembo_nida_sdk.dart';
 import 'package:tembo_ui/source.dart';
 
-class NIDANumberPage extends StatefulWidget {
+class NIDANumberPage extends TemboPage {
   const NIDANumberPage({super.key});
 
-  static const name = "nida-number-page";
+  @override
+  String get name => "nida-number-page";
 
   @override
   State<NIDANumberPage> createState() => _NIDANumberPageState();
@@ -31,6 +32,10 @@ class _NIDANumberPageStateView extends StatelessWidget {
           )
         ],
       ),
+      bottomNavigationBar: TemboBottomButton(
+        callback: state.next,
+        text: context.l.next,
+      ),
     );
   }
 }
@@ -45,7 +50,7 @@ class _NIDANumberPageState extends State<NIDANumberPage> {
   }
 
   void next() {
-    rootNavigator.to(QuestionsPage.name, const QuestionsPage());
+    rootNavigator.to(const QuestionsPage());
   }
 
   @override

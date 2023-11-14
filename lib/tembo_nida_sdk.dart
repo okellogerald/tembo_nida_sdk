@@ -21,9 +21,7 @@ void startVerificationProcess(
 }) async {
   initializeUISDK(context, locale: locale, themeMode: themeMode);
 
-  onAgreed() {
-    rootNavigator.to(PrepPage.name, const PrepPage());
-  }
+  void onAgreed() => rootNavigator.to(const PrepPage());
 
   await pushApp(context, TOCPage(onAgreed));
 }
