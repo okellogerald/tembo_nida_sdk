@@ -2,7 +2,7 @@ import 'package:tembo_nida_sdk/src/views/nin_number_page.dart';
 import 'package:tembo_nida_sdk/tembo_nida_sdk.dart';
 import 'package:tembo_ui/source.dart';
 
-class PrepPage extends TemboPage {
+class PrepPage extends TemboStatefulPage {
   const PrepPage({super.key});
 
   @override
@@ -49,7 +49,7 @@ class _PrepPageState extends State<PrepPage> {
   }
 
   onPressed() {
-    rootNavigator.to(const NIDANumberPage());
+    rootNavigator.to2(const NIDANumberPage());
   }
 }
 

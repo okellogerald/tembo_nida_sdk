@@ -1,8 +1,8 @@
-import 'package:tembo_nida_sdk/src/views/questions_page.dart';
+import 'package:tembo_nida_sdk/src/views/questions_page/questions_page.dart';
 import 'package:tembo_nida_sdk/tembo_nida_sdk.dart';
 import 'package:tembo_ui/source.dart';
 
-class NIDANumberPage extends TemboPage {
+class NIDANumberPage extends TemboStatefulPage {
   const NIDANumberPage({super.key});
 
   @override
@@ -49,8 +49,21 @@ class _NIDANumberPageState extends State<NIDANumberPage> {
     controller = TextEditingController();
   }
 
+  bool validate() {
+    final text = controller.compactText;
+    if (text?.length != 20) {
+      showErrorSnackbar("message");
+      return false;
+    }
+
+    return true;
+  }
+
   void next() {
-    rootNavigator.to(const QuestionsPage());
+    final valid = validate();
+    if (!valid) return;
+
+    rootNavigator.to3(QuestionsPage(controller.compactText!));
   }
 
   @override
