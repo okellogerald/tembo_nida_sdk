@@ -15,14 +15,17 @@ class ResultsPage extends TemboPage {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TemboAppBar(label: "Your Results"),
+      appBar: TemboAppBar(
+        label: "Your Results",
+        onBackPress: popBackToPrevApp,
+      ),
       body: Padding(
         padding: kPagePadding + bottom(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TemboText.bold(
-              "You got $rightResults questions out of ${results.length} correct",
+              "You got $rightResults questions correct out of ${results.length}",
               style: context.textTheme.bodyMedium.withPrimaryColor,
             ),
             vSpace(),
@@ -63,10 +66,15 @@ class ResultsPage extends TemboPage {
                 ? const TemboTextFieldDecoration(
                     borderColor: Colors.green,
                     borderWidth: 2,
+                    suffixIcon: Icon(Icons.check, color: Colors.green),
                   )
                 : TemboTextFieldDecoration(
                     borderColor: LightTemboColors.error,
                     borderWidth: 2,
+                    suffixIcon: const Icon(
+                      Icons.close,
+                      color: LightTemboColors.error,
+                    ),
                     valueStyle: context.textTheme.bodyLarge.withColor(
                       context.colorScheme.onBackground,
                     ),
