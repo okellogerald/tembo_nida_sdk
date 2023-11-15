@@ -39,5 +39,6 @@ class SessionManager extends StateNotifier<List<Result>> {
     final current = List<Result>.from(state);
     current.add(result);
     state = current;
+    print(state);
   }
 }

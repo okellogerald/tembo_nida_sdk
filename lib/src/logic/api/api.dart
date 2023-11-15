@@ -19,7 +19,7 @@ class IdentityVerificationAPI extends BaseHTTPAPI {
     final data = {
       "nin": nin,
       "questionCode": questionCode,
-      "answer": "answer",
+      "answer": answer,
     };
     final result = await post("rq-verify", body: jsonEncode(data));
     return result;

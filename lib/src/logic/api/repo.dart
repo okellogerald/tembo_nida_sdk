@@ -44,6 +44,11 @@ class IdentityRepository {
 
     if (profile != null) return (profile, null);
 
+    if (body["result"] == null) {
+      // could not provide KYC data because most qns were answered incorrectly
+      return (null, null);
+    }
+
     throw "We could not process the result";
   }
 }

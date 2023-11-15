@@ -1,4 +1,4 @@
-import 'package:tembo_nida_sdk/src/views/questions_page/questions_page.dart';
+import 'package:tembo_nida_sdk/src/views/questions_page.dart';
 import 'package:tembo_nida_sdk/tembo_nida_sdk.dart';
 import 'package:tembo_ui/source.dart';
 
@@ -18,23 +18,25 @@ class _NIDANumberPageStateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: TemboAppBar(label: "NIDA Number(NIN)"),
-      body: ListView(
-        padding: kPagePadding,
-        children: [
-          TemboLabelledFormField(
-            label: "NIN",
-            controller: state.controller,
-            formatters: [
-              OnlyIntegerFormatter(),
-            ],
-          )
-        ],
-      ),
-      bottomNavigationBar: TemboBottomButton(
-        callback: state.next,
-        text: context.l.next,
+    return FocusWrapper(
+      child: Scaffold(
+        appBar: TemboAppBar(label: "NIDA Number(NIN)"),
+        body: ListView(
+          padding: kPagePadding,
+          children: [
+            TemboLabelledFormField(
+              label: "NIN",
+              controller: state.controller,
+              formatters: [
+                OnlyIntegerFormatter(),
+              ],
+            )
+          ],
+        ),
+        bottomNavigationBar: TemboBottomButton(
+          callback: state.next,
+          text: context.l.next,
+        ),
       ),
     );
   }
