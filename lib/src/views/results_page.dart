@@ -1,6 +1,5 @@
 import 'package:tembo_nida_sdk/src/logic/models/result.dart';
 import 'package:tembo_ui/source.dart';
-import 'package:tembo_ui/tembo_ui.dart';
 
 class ResultsPage extends TemboPage {
   final List<Result> results;
