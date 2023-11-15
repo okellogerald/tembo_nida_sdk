@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tembo_nida_sdk/src/logic/models/question.dart';
 import 'package:tembo_nida_sdk/src/logic/session_manager.dart';
-import 'package:tembo_nida_sdk/src/views/results_page.dart';
 import 'package:tembo_nida_sdk/src/views/success_page.dart';
 import 'package:tembo_ui/app_state/source.dart';
 import 'package:tembo_ui/source.dart';
 
 import '../logic/models/profile.dart';
+import 'failure_page.dart';
 
 typedef _State = ({Profile? profile, Question? newQn});
 
@@ -36,6 +36,7 @@ class _QuestionsPageStateView extends ConsumerWidget {
       initial: buildLoading,
       loading: buildLoading,
       success: buildSuccess,
+      // success: (_) => buildLoading(),
       error: (_) => buildError(),
     );
   }
@@ -67,10 +68,11 @@ class _QuestionsPageStateView extends ConsumerWidget {
       appBar: TemboAppBar(),
       body: TemboContainer(
         constraints: kMaxConstraints,
-        child: const Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TemboLoadingIndicator(),
+            // TemboLoadingIndicator(),
+            Image.asset("packages/tembo_nida_sdk/assets/laoding.gif")
           ],
         ),
       ),
@@ -84,29 +86,38 @@ class _QuestionsPageStateView extends ConsumerWidget {
   }
 
   Widget buildQuestion(Question qn) {
-    return FocusWrapper(
-      child: Scaffold(
-        appBar: TemboAppBar(label: "Answer Questions"),
-        body: ListView(
-          padding: kPagePadding,
-          children: [
-            const TemboFormLabel("Question (English)"),
-            buildQn(qn.inEnglish),
-            vSpace(),
-            const TemboFormLabel("Question (Swahili)"),
-            buildQn(qn.inSwahili),
-            vSpace(),
-            TemboLabelledFormField(
-              label: "Answer",
-              controller: state.answerController,
+    return Builder(
+      builder: (context) {
+        return Scaffold(
+          appBar: TemboAppBar(label: "Jibu Maswali"),
+          body: FocusWrapper(
+            child: ListView(
+              padding: kPagePadding,
+              children: [
+                // const TemboFormLabel("Question (English)"),
+                // buildQn(qn.inEnglish),
+                // vSpace(),
+                 TemboFormLabel(
+                  "Swali: ",
+                  style:  context.textTheme.bodyLarge.bold.withPrimaryColor,
+                ),
+                buildQn(qn.inSwahili),
+                vSpace(),
+              TemboLabelledFormField(
+                    label: "Jibu:",
+                    labelStyle: context.textTheme.bodyLarge.bold.withPrimaryColor,
+                    controller: state.answerController,
+                    textCapitalization: TextCapitalization.words,
+                  )
+              ],
             ),
-          ],
-        ),
-        bottomNavigationBar: TemboBottomButton(
-          callback: state.sendAnswer,
-          text: "Send Answer",
-        ),
-      ),
+          ),
+          bottomNavigationBar: TemboBottomButton(
+            callback: state.sendAnswer,
+            text: "Send Answer",
+          ),
+        );
+      }
     );
   }
 
@@ -158,7 +169,19 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
     );
   }
 
+  bool validate() {
+    if (answerController.compactText == null) {
+      showErrorSnackbar("Tafadhari andika jibu sahihi");
+      return false;
+    }
+
+    return true;
+  }
+
   void sendAnswer() {
+    final valid = validate();
+    if (!valid) return;
+
     callback = sendAnswer;
     final futureTracker = ref.read(futureTrackerProvider);
 
@@ -171,9 +194,8 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
       onSuccess: (data) {
         answerController.clear();
 
-        if(data.profile == null && data.newQn == null) {
-          final results = ref.read(sessionManagerProvider);
-          rootNavKey.push(ResultsPage(results));
+        if (data.profile == null && data.newQn == null) {
+          rootNavKey.push(const FailurePage());
           return;
         }
 

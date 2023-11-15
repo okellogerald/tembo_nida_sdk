@@ -9,7 +9,7 @@ class NIDANumberPage extends TemboStatefulPage {
   const NIDANumberPage({super.key});
 
   @override
-  String get name => "nida-number-page";
+  String get name => "nin";
 
   @override
   State<NIDANumberPage> createState() => _NIDANumberPageState();
@@ -21,35 +21,39 @@ class _NIDANumberPageStateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FocusWrapper(
-      child: Scaffold(
-        appBar: TemboAppBar(label: "NIDA Number(NIN)"),
-        body: ListView(
+    return Scaffold(
+      appBar: TemboAppBar(label: "Namba ya NIDA"),
+      body: FocusWrapper(
+        child: ListView(
           padding: kPagePadding,
           children: [
+            // const TemboText("Tunahitaji namba yako ya NIDA ili kuendelea."),
+            // vSpace(),
             TemboLabelledFormField(
-              label: "NIN",
+              label: "Ingiza Namba ya NIDA",
+              labelStyle: context.textTheme.bodyMedium.bold.withPrimaryColor,
               controller: state.controller,
               formatters: [
                 OnlyIntegerFormatter(),
               ],
+              textInputType: TextInputType.number,
               decoration: TemboTextFieldDecoration(
                 valueStyle: context.textTheme.headlineSmall.bold,
-                  suffixIcon: IconButton(
-                    onPressed: state.scanNidaNumber,
-                    icon: const Icon(
-                      Icons.qr_code_scanner_rounded,
-                      color: Colors.black45,
-                    ),
+                suffixIcon: IconButton(
+                  onPressed: state.scanNidaNumber,
+                  icon: const Icon(
+                    Icons.qr_code_scanner_rounded,
+                    color: Colors.black45,
                   ),
+                ),
               ),
             )
           ],
         ),
-        bottomNavigationBar: TemboBottomButton(
-          callback: state.next,
-          text: context.l.next,
-        ),
+      ),
+      bottomNavigationBar: TemboBottomButton(
+        callback: state.next,
+        text: context.l.next,
       ),
     );
   }
@@ -72,11 +76,10 @@ class _NIDANumberPageState extends State<NIDANumberPage> {
     }
   }
 
-
   bool validate() {
     final text = controller.compactText;
     if (text?.length != 20) {
-      showErrorSnackbar("message");
+      showErrorSnackbar("Weka namba sahihi ya NIDA");
       return false;
     }
 
