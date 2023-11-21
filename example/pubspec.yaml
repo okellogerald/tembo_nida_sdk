@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   tembo_nida_sdk:
-    path: "/Users/mac/Programs/Packages/tembo_nida_sdk"
+    path: "/Users/macbookpro/Downloads/programs/packages/tembo_nida_sdk"
 
 dev_dependencies:
   flutter_test:

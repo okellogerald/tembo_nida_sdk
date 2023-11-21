@@ -261,14 +261,14 @@ packages:
   tembo_nida_sdk:
     dependency: "direct main"
     description:
-      path: "/Users/mac/Programs/Packages/tembo_nida_sdk"
+      path: "/Users/macbookpro/Downloads/programs/packages/tembo_nida_sdk"
       relative: false
     source: path
     version: "0.0.1"
   tembo_ui:
     dependency: transitive
     description:
-      path: "/Users/mac/Programs/Packages/tembo_ui"
+      path: "/Users/macbookpro/Downloads/programs/packages/tembo_ui"
       relative: false
     source: path
     version: "0.0.1"
