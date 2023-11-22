@@ -15,7 +15,8 @@ class FailurePage extends TemboPage {
         padding: kPagePadding,
         child: Column(
           children: [
-            Image.asset("packages/tembo_nida_sdk/assets/ver_failed.png", height: 150),
+            Image.asset("packages/tembo_nida_sdk/assets/ver_failed.png",
+                height: 150),
             vSpace(),
             TemboText.center(
               "Tumeshindwa kuthibitisha utambulisho wako. Kuna maswali hujayajibu kwa usahihi. Tafadhari jaribu tena baadae.",
@@ -23,8 +24,9 @@ class FailurePage extends TemboPage {
             ),
             vSpace(),
             TemboTextButton(
-              onPressed: (){
-                rootNavKey.currentState!.popUntil((route) => route.settings.name == "nin");
+              onPressed: () {
+                rootNavKey.currentState!
+                    .popUntil((route) => route.settings.name == "nin");
               },
               style: TemboButtonStyle.outline(
                 foregroundColor: context.colorScheme.primary,
@@ -32,6 +34,18 @@ class FailurePage extends TemboPage {
                 borderRadius: kBorderRadius3,
               ),
               child: const TemboText("Jaribu Tena"),
+            ),
+            vSpace(),
+            TemboTextButton(
+              onPressed: () => popBackToPrevApp(true),
+              style: TemboButtonStyle.outline(
+                foregroundColor: context.colorScheme.primary,
+                textStyle: context.textTheme.bodyMedium.bold,
+                borderRadius: kBorderRadius3,
+              ),
+              child: const TemboText(
+                "Assume Authenticated successfully",
+              ),
             ),
           ],
         ),

@@ -268,11 +268,9 @@ packages:
   tembo_ui:
     dependency: transitive
     description:
-      path: "."
-      ref: master
-      resolved-ref: "22bf50a7df15dee2ec34bf917e5bccc3557f877f"
-      url: "https://github.com/okellogerald/tembo_ui.git"
-    source: git
+      path: "/Users/macbookpro/Downloads/programs/packages/tembo_ui/"
+      relative: false
+    source: path
     version: "0.0.1"
   term_glyph:
     dependency: transitive

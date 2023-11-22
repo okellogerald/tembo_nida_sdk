@@ -11,7 +11,7 @@ export 'package:tembo_ui/tembo_ui.dart';
 // NavigatorState get rootNavigator => navigatorManager.value;
 NavigatorState get rootNavigator => rootNavKey.currentState!;
 
-void startVerificationProcess(
+Future<T?> startVerificationProcess<T>(
   BuildContext context, {
   /// Color scheme to be used for all components used in the SDK.
   /// Sets the language to be used.
@@ -25,6 +25,5 @@ void startVerificationProcess(
   initializeUISDK(context, locale: locale, themeMode: themeMode);
 
   void onAgreed() => rootNavigator.to2(const PrepPage());
-
-  await pushApp(context, "toc", TOCPage(onAgreed));
+  return await pushApp(context, "toc", TOCPage(onAgreed));
 }
