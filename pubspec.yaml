@@ -12,12 +12,12 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  tembo_ui:
-    path: /Users/macbookpro/Downloads/programs/packages/tembo_ui/
   # tembo_ui:
-  #   git: 
-  #     url: https://github.com/okellogerald/tembo_ui.git
-  #     ref: master
+  #   path: /Users/macbookpro/Downloads/programs/packages/tembo_ui/
+  tembo_ui:
+    git: 
+      url: https://github.com/okellogerald/tembo_ui.git
+      ref: master
   http: ^1.0.0
   freezed_annotation: ^2.2.0
   flutter_riverpod: ^2.3.6
