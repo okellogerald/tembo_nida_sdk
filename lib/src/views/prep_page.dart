@@ -1,7 +1,6 @@
 import 'package:tembo_nida_sdk/src/views/nin_number_page.dart';
 import 'package:tembo_nida_sdk/tembo_nida_sdk.dart';
 import 'package:tembo_ui/components/container/decoration.dart';
-import 'package:tembo_ui/source.dart';
 
 class PrepPage extends TemboStatefulPage {
   const PrepPage({super.key});

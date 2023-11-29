@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:tembo_nida_sdk/tembo_nida_sdk.dart';
 
 void main() {

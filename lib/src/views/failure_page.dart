@@ -35,7 +35,7 @@ class FailurePage extends TemboPage {
               ),
               child: const TemboText("Jaribu Tena"),
             ),
-            vSpace(),
+           /*  vSpace(),
             TemboTextButton(
               onPressed: () => popBackToPrevApp(true),
               style: TemboButtonStyle.outline(
@@ -46,7 +46,7 @@ class FailurePage extends TemboPage {
               child: const TemboText(
                 "Assume Authenticated successfully",
               ),
-            ),
+            ), */
           ],
         ),
       ),

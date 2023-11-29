@@ -86,39 +86,37 @@ class _QuestionsPageStateView extends ConsumerWidget {
   }
 
   Widget buildQuestion(Question qn) {
-    return Builder(
-      builder: (context) {
-        return Scaffold(
-          appBar: TemboAppBar(label: "Jibu Maswali"),
-          body: FocusWrapper(
-            child: ListView(
-              padding: kPagePadding,
-              children: [
-                // const TemboFormLabel("Question (English)"),
-                // buildQn(qn.inEnglish),
-                // vSpace(),
-                 TemboFormLabel(
-                  "Swali: ",
-                  style:  context.textTheme.bodyLarge.bold.withPrimaryColor,
-                ),
-                buildQn(qn.inSwahili),
-                vSpace(),
+    return Builder(builder: (context) {
+      return Scaffold(
+        appBar: TemboAppBar(label: "Jibu Maswali"),
+        body: FocusWrapper(
+          child: ListView(
+            padding: kPagePadding,
+            children: [
+              // const TemboFormLabel("Question (English)"),
+              // buildQn(qn.inEnglish),
+              // vSpace(),
+              TemboFormLabel(
+                "Swali: ",
+                style: context.textTheme.bodyLarge.bold.withPrimaryColor,
+              ),
+              buildQn(qn.inSwahili),
+              vSpace(),
               TemboLabelledFormField(
-                    label: "Jibu:",
-                    labelStyle: context.textTheme.bodyLarge.bold.withPrimaryColor,
-                    controller: state.answerController,
-                    textCapitalization: TextCapitalization.words,
-                  )
-              ],
-            ),
+                label: "Jibu:",
+                labelStyle: context.textTheme.bodyLarge.bold.withPrimaryColor,
+                controller: state.answerController,
+                textCapitalization: TextCapitalization.words,
+              )
+            ],
           ),
-          bottomNavigationBar: TemboBottomButton(
-            callback: state.sendAnswer,
-            text: "Send Answer",
-          ),
-        );
-      }
-    );
+        ),
+        bottomNavigationBar: TemboBottomButton(
+          callback: state.sendAnswer,
+          text: "Send Answer",
+        ),
+      );
+    });
   }
 
   Widget buildQn(String data) {
@@ -201,7 +199,7 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
 
         if (data.profile != null) {
           rootNavKey.pop();
-          rootNavKey.push(const SuccessPage());
+          rootNavKey.push(SuccessPage(data.profile!));
         }
       },
     );

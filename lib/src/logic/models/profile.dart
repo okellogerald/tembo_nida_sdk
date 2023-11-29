@@ -4,6 +4,10 @@ class Profile {
   final String firstName;
   final String lastName;
 
+  String get name {
+    return "$firstName $lastName";
+  }
+
   const Profile({
     required this.firstName,
     required this.lastName,

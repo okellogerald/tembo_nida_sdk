@@ -1,7 +1,6 @@
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:tembo_nida_sdk/src/views/questions_page.dart';
 import 'package:tembo_nida_sdk/tembo_nida_sdk.dart';
-import 'package:tembo_ui/source.dart';
 
 import 'qr_code_scanner.dart';
 
