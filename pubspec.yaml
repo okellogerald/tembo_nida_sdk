@@ -22,6 +22,7 @@ dependencies:
   freezed_annotation: ^2.2.0
   flutter_riverpod: ^2.3.6
   mobile_scanner: ^3.5.0
+  intl:
  
 dev_dependencies:
   flutter_test:

@@ -23,8 +23,8 @@ class SuccessPage extends TemboPage {
           ],
         ),
       ),
-      bottomNavigationBar: const TemboBottomButton(
-        callback: popBackToPrevApp,
+      bottomNavigationBar: TemboBottomButton(
+        callback: () => popBackToPrevApp(profile),
         text: "Okay",
       ),
     );
