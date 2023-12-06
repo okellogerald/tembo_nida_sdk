@@ -36,7 +36,6 @@ class _QuestionsPageStateView extends ConsumerWidget {
       initial: buildLoading,
       loading: buildLoading,
       success: buildSuccess,
-      // success: (_) => buildLoading(),
       error: (_) => buildError(),
     );
   }
@@ -71,7 +70,6 @@ class _QuestionsPageStateView extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // TemboLoadingIndicator(),
             Image.asset("packages/tembo_nida_sdk/assets/laoding.gif")
           ],
         ),
