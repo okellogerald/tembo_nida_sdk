@@ -5,6 +5,8 @@ import 'package:tembo_ui/tembo_ui.dart';
 
 import 'src/views/prep_page.dart';
 
+export 'src/logic/models/profile.dart';
+
 export 'package:tembo_ui/source.dart';
 export 'package:tembo_ui/tembo_ui.dart';
 
