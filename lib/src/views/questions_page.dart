@@ -2,17 +2,15 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tembo_nida_sdk/src/logic/models/question.dart';
+import 'package:tembo_nida_sdk/src/logic/models/result.dart';
 import 'package:tembo_nida_sdk/src/logic/session_manager.dart';
 import 'package:tembo_nida_sdk/src/views/success_page.dart';
 import 'package:tembo_ui/app_state/source.dart';
 import 'package:tembo_ui/source.dart';
 
-import '../logic/models/profile.dart';
 import 'failure_page.dart';
 
-typedef _State = ({Profile? profile, Question? newQn});
-
-final _pageStateNotifier = createModelStateNotifier<_State>();
+final _pageStateNotifier = createModelStateNotifier<Result>();
 
 final class QuestionsPage extends TemboConsumerPage {
   final String ninNumber;
@@ -77,7 +75,7 @@ class _QuestionsPageStateView extends ConsumerWidget {
     );
   }
 
-  Widget buildSuccess(_State data) {
+  Widget buildSuccess(Result data) {
     if (data.newQn != null) return buildQuestion(data.newQn!);
 
     return buildLoading();
@@ -139,7 +137,7 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
 
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) {
-    ref.read(sessionManagerProvider.notifier).init(widget.ninNumber);
+    ref.read(sessionManagerProvider).init(widget.ninNumber);
     loadFirstQuestion();
   }
 
@@ -153,8 +151,8 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
     callback = loadFirstQuestion;
     final futureTracker = ref.read(futureTrackerProvider);
 
-    Future<_State> future() async {
-      final result = await ref.read(sessionManagerProvider.notifier).start();
+    Future<Result> future() async {
+      final result = await ref.read(sessionManagerProvider).start();
       return (profile: null, newQn: result);
     }
 
@@ -183,7 +181,7 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
 
     futureTracker.trackWithNotifier(
       notifier: ref.read(_pageStateNotifier.notifier),
-      future: ref.read(sessionManagerProvider.notifier).sendAnswer(
+      future: ref.read(sessionManagerProvider).sendAnswer(
             ref.read(_pageStateNotifier).data!.newQn!,
             answerController.compactText!,
           ),

@@ -1,7 +1,7 @@
 import 'package:tembo_nida_sdk/src/logic/models/question.dart';
-import 'package:tembo_nida_sdk/src/logic/models/result.dart';
 
 import '../models/profile.dart';
+import '../models/result.dart';
 import 'api.dart';
 
 class IdentityRepository {
@@ -12,41 +12,26 @@ class IdentityRepository {
     return Question.fromMap(body["result"]);
   }
 
-  Future<(Profile? profile, ({Result result, Question newQn})?)> sendAnswer(
+  Future<Result> sendAnswer(
     Question qn,
     String nin,
     String answer,
   ) async {
     final body = await _api.sendAnswer(nin, qn.code, answer);
 
-    bool? gotRight;
-    Question? newQn;
     try {
-      gotRight = body["prevCode"] == "123";
-      newQn = Question.fromMap(body["result"]);
+      final q = Question.fromMap(body["result"]);
+      return (profile: null, newQn: q);
     } catch (_) {}
 
-    if (gotRight != null && newQn != null) {
-      return (
-        null,
-        (
-          result: Result(question: qn, answer: answer, right: gotRight),
-          newQn: newQn,
-        )
-      );
-    }
-
-    Profile? profile;
-
     try {
-      profile = Profile.fromMap(body["result"]);
+      final p = Profile.fromMap(body["result"]);
+      return (profile: p, newQn: null);
     } catch (_) {}
-
-    if (profile != null) return (profile, null);
 
     if (body["result"] == null) {
       // could not provide KYC data because most qns were answered incorrectly
-      return (null, null);
+      return (profile: null, newQn: null);
     }
 
     throw "We could not process the result";

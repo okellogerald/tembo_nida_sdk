@@ -1,18 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tembo_nida_sdk/src/logic/api/repo.dart';
 import 'package:tembo_nida_sdk/src/logic/models/question.dart';
+import 'package:tembo_nida_sdk/src/logic/models/result.dart';
 
-import 'models/profile.dart';
-import 'models/result.dart';
+final sessionManagerProvider = Provider((_) => SessionManager());
 
-final sessionManagerProvider =
-    StateNotifierProvider<SessionManager, List<Result>>((ref) {
-  return SessionManager();
-});
-
-class SessionManager extends StateNotifier<List<Result>> {
-  SessionManager() : super(const []);
-
+class SessionManager {
   String? _nin;
 
   final _repo = IdentityRepository();
@@ -22,22 +15,10 @@ class SessionManager extends StateNotifier<List<Result>> {
   void init(String nin) => _nin = nin;
 
   Future<Question> start() async {
-    final qn = await _repo.startSession(nin);
-    return qn;
+    return await _repo.startSession(nin);
   }
 
-  Future<({Profile? profile, Question? newQn})> sendAnswer(
-    Question qn,
-    String answer,
-  ) async {
-    final result = await _repo.sendAnswer(qn, nin, answer);
-    if (result.$2 != null) updateState(result.$2!.result);
-    return (profile: result.$1, newQn: result.$2?.newQn);
-  }
-
-  void updateState(Result result) {
-    final current = List<Result>.from(state);
-    current.add(result);
-    state = current;
+  Future<Result> sendAnswer(Question qn, String answer) async {
+    return await _repo.sendAnswer(qn, nin, answer);
   }
 }
