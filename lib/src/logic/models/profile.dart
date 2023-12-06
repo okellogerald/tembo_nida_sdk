@@ -2,36 +2,36 @@ import 'dart:convert';
 
 import 'package:intl/intl.dart';
 
-enum Sex {
+enum UserGender {
   male,
   female,
   ;
 
-  static Sex fromJson(String json) {
-    if (json.toLowerCase() == "male") return Sex.male;
-    if (json.toLowerCase() == "female") return Sex.female;
+  static UserGender fromJson(String json) {
+    if (json.toLowerCase() == "male") return UserGender.male;
+    if (json.toLowerCase() == "female") return UserGender.female;
     throw "unknown sex";
   }
 }
 
-class Profile {
+class UserInfo {
   final String firstName;
   final String lastName;
   final DateTime dob;
-  final Sex gender;
+  final UserGender gender;
 
   String get name {
     return "$firstName $lastName";
   }
 
-  const Profile({
+  const UserInfo({
     required this.firstName,
     required this.lastName,
     required this.dob,
     required this.gender,
   });
 
-  factory Profile.fromMap(Map<String, dynamic> map) {
+  factory UserInfo.fromMap(Map<String, dynamic> map) {
     String? gender;
     try {
       gender = map["sex"] as String?;
@@ -44,16 +44,16 @@ class Profile {
       throw "Inavalid Date";
     }
 
-    return Profile(
+    return UserInfo(
       firstName: map['firstName'] as String,
       lastName: map['lastName'] as String,
       dob: date,
-      gender: Sex.fromJson(gender ?? ""),
+      gender: UserGender.fromJson(gender ?? ""),
     );
   }
 
-  factory Profile.fromJson(String source) =>
-      Profile.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserInfo.fromJson(String source) =>
+      UserInfo.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -61,7 +61,7 @@ class Profile {
   }
 
   @override
-  bool operator ==(covariant Profile other) {
+  bool operator ==(covariant UserInfo other) {
     if (identical(this, other)) return true;
 
     return other.firstName == firstName &&

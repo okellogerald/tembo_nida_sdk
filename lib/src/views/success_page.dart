@@ -2,7 +2,7 @@ import 'package:tembo_nida_sdk/src/logic/models/profile.dart';
 import 'package:tembo_ui/source.dart';
 
 class SuccessPage extends TemboPage {
-  final Profile profile;
+  final UserInfo profile;
   const SuccessPage(this.profile, {super.key});
 
   @override

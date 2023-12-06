@@ -25,7 +25,7 @@ class IdentityRepository {
     } catch (_) {}
 
     try {
-      final p = Profile.fromMap(body["result"]);
+      final p = UserInfo.fromMap(body["result"]);
       return (profile: p, newQn: null);
     } catch (_) {}
 
