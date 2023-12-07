@@ -14,6 +14,7 @@ class SuccessPage extends TemboPage {
       appBar: TemboAppBar(label: ""),
       body: Container(
         constraints: kMaxConstraints,
+        padding: kHorPadding,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

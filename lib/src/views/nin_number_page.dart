@@ -20,6 +20,7 @@ class _NIDANumberPageStateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(state.controller.text);
     return Scaffold(
       appBar: TemboAppBar(label: "Namba ya NIDA"),
       body: FocusWrapper(
